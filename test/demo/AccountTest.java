@@ -43,4 +43,39 @@ class AccountTest {
         Assertions.assertTrue(result==100 && original != 100);
     }
 
+    @Test
+    public void testTransfer(){
+        //Arrange
+        Account account1 = new Account("123","1st Account");
+        Account account2 = new Account("123","2nd Account");
+
+        //Act
+        account1.insert(1000);
+        double amount = 100;
+        double originalBalance = account1.getBalance();
+        account1.transfer(amount,account2);
+
+        //Assert
+        assertEquals(account2.getBalance(), amount);
+        assertEquals(account1.getBalance(), originalBalance - amount);
+    }
+
+    @Test
+    public void testTransfer_TransferFails8(){
+        //Arrange
+        Account account1 = new Account("123","1st Account");
+        Account account2 = new Account("123","2nd Account");
+
+        //Act
+        account1.insert(1000);
+        double amount = 1001;
+        double originalBalance = account1.getBalance();
+        account1.transfer(amount,account2);
+
+        //Assert
+        assertNotEquals(account2.getBalance(), amount);
+        assertNotEquals(account1.getBalance(), originalBalance - amount);
+
+    }
+
 }

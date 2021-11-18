@@ -25,8 +25,24 @@ public class Account {
        }
     }
 
+    public Account transfer(double input, Account account){
+        if(withdraw(input)==-1) {
+            return null;
+        }
+        account.insert(input);
+        return account;
+    }
+
     public double getBalance() {
         return balance;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
     }
 
     @Override
